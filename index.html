@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blinkit - Groceries Delivered</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #fff;
+    color: #222;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 5%;
+    border-bottom: 1px solid #eee;
+    gap: 25px;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: #f8cb46;
+}
+
+.delivery h3 {
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+.delivery p {
+    font-size: 12px;
+    color: #666;
+}
+
+.search {
+    flex: 1;
+    background: #f5f5f5;
+    padding: 14px 18px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.search input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+}
+
+.login {
+    border: none;
+    background: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.cart {
+    background: #0c831f;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* MAIN CONTAINER */
+.container {
+    max-width: 1200px;
+    margin: 25px auto;
+    padding: 0 15px;
+}
+
+/* MAIN BANNER */
+.banner {
+    min-height: 195px;
+    border-radius: 15px;
+    background: linear-gradient(100deg, #087b36, #6b9d43);
+    color: white;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.banner-content {
+    max-width: 550px;
+}
+
+.banner h1 {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.banner p {
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.shop-btn {
+    background: white;
+    color: #222;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.banner-image {
+    font-size: 95px;
+    padding-right: 30px;
+}
+
+/* PROMOTIONAL CARDS */
+.offers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.offer-card {
+    min-height: 150px;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.offer-card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.offer-card p {
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.offer-card button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.offer-card span {
+    font-size: 55px;
+}
+
+.pharmacy {
+    background: #23b8a8;
+    color: white;
+}
+
+.pet {
+    background: #f5c15c;
+    color: #513b20;
+}
+
+.baby {
+    background: #dce5ed;
+    color: #333;
+}
+
+/* CATEGORY SECTION */
+.categories {
+    margin-top: 30px;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 20px 12px;
+    text-align: center;
+}
+
+.category {
+    cursor: pointer;
+    padding: 8px 3px;
+}
+
+.category .icon {
+    height: 75px;
+    background: #fafafa;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    margin-bottom: 8px;
+}
+
+.category p {
+    font-size: 12px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+/* PRODUCT SECTION */
+.products {
+    margin-top: 35px;
+}
+
+.products h2 {
+    margin-bottom: 18px;
+    font-size: 23px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.product {
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+}
+
+.product .product-img {
+    font-size: 55px;
+    padding: 15px;
+}
+
+.product h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.product p {
+    font-size: 12px;
+    color: #777;
+}
+
+.product button {
+    margin-top: 12px;
+    padding: 8px 18px;
+    color: #0c831f;
+    border: 1px solid #0c831f;
+    background: #f7fff7;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+    margin-top: 50px;
+    padding: 30px;
+    background: #f7f7f7;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .logo {
+        font-size: 27px;
+    }
+
+    .delivery {
+        flex: 1;
+    }
+
+    .search {
+        order: 4;
+        flex-basis: 100%;
+    }
+
+    .banner {
+        min-height: 220px;
+        padding: 20px;
+    }
+    .banner h1 {
+        font-size: 25px;
+    }
+
+    .banner p {
+        font-size: 15px;
+    }
+
+    .banner-image {
+        font-size: 55px;
+        padding: 0;
+    }
+
+    .offers {
+        grid-template-columns: 1fr;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 400px) {
+    .delivery h3 {
+        font-size: 13px;
+    }
+    .cart {
+        padding: 10px;
+    }
+
+    .banner-image {
+        font-size: 40px;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">blinkit</div>
+
+    <div class="delivery">
+        <h3>Delivery in 17 minutes</h3>
+        <p>Meerut, Uttar Pradesh ▼</p>
+    </div>
+
+    <div class="search">
+        🔍
+        <input type="text"
+        placeholder="Search for products">
+    </div>
+
+    <button class="login">Login</button>
+    <button class="cart">🛒 My Cart</button>
+</header>
+
+<div class="container">
+
+    <!-- MAIN BANNER -->
+    <section class="banner">
+        <div class="banner-content">
+            <h1>Stock up on daily essentials</h1>
+            <p>
+                Get farm-fresh goodness & a range of exotic
+                fruits, vegetables, eggs & more
+            </p>
+            <button class="shop-btn">Shop Now</button>
+        </div>
+        <div class="banner-image">
+            🥛 🥚 🥦 🍊 🍇
+        </div>
+    </section>
+
+    <!-- OFFER CARDS -->
+    <section class="offers">
+
+        <div class="offer-card pharmacy">
+            <div>
+                <h2>Pharmacy at your doorstep!</h2>
+                <p>Quick medicines and health essentials</p>
+                <button>Order Now</button>
+            </div>
+            <span>💊</span>
+        </div>
+
+        <div class="offer-card pet">
+            <div>
+                <h2>Pet care supplies at your door</h2>
+                <p>Food, treats, toys & more</p>
+                <button>Order Now</button>
+            </div>
+            <span>🐶</span>
+        </div>
+
+        <div class="offer-card baby">
+            <div>
+                <h2>No time for a diaper run?</h2>
+                <p>Get baby care essentials</p>
+                <button>Order Now</button>
+            </div>
+            <span>👶</span>
+        </div>
+
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="categories">
+        <div class="category-grid">
+
+            <div class="category">
+                <div class="icon">🍪</div>
+                <p>Paan Corner</p>
+            </div>
+            <div class="category">
+                <div class="icon">🥛</div>
+                <p>Dairy, Bread & Eggs</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">🥦</div>
+                <p>Fruits & Vegetables</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">🥤</div>
+                <p>Cold Drinks & Juices</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">🍟</div>
+                <p>Snacks & Munchies</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">🍞</div>
+                <p>Breakfast & Instant Food</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">🍫</div>
+                <p>Sweet Tooth</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">🍪</div>
+                <p>Bakery & Biscuits</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">☕</div>
+                <p>Tea, Coffee & Milk Drinks</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">🧴</div>
+                <p>Atta, Rice & Dal</p>
+            </div>
+            <div class="category">
+                <div class="icon">🧼</div>
+                <p>Cleaning Essentials</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">🧴</div>
+                <p>Personal Care</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">🍚</div>
+                <p>Masala & Dry Fruits</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">🧊</div>
+                <p>Ice Creams</p>
+            </div>
+
+            <div class="category">
+                <div class="icon">🍳</div>
+                <p>Kitchen Essentials</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="products">
+        <h2>Daily Essentials</h2>
+
+        <div class="product-grid">
+
+            <div class="product">
+                <div class="product-img">🥛</div>
+                <h4>Fresh Milk</h4>
+                <p>500 ml</p>
+                <button>ADD</button>
+            </div>
+
+            <div class="product">
+                <div class="product-img">🍞</div>
+                <h4>Brown Bread</h4>
+                <p>400 g</p>
+                <button>ADD</button>
+            </div>
+
+            <div class="product">
+                <div class="product-img">🥚</div>
+                <h4>Fresh Eggs</h4>
+                <p>6 pieces</p>
+                <button>ADD</button>
+            </div>
+            <div class="product">
+                <div class="product-img">🍎</div>
+                <h4>Fresh Apples</h4>
+                <p>500 g</p>
+                <button>ADD</button>
+            </div>
+
+            <div class="product">
+                <div class="product-img">🍌</div>
+                <h4>Bananas</h4>
+                <p>1 dozen</p>
+                <button>ADD</button>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Blinkit Clone | Made with HTML & CSS</p>
+</footer>
+
+</body>
+</html>
